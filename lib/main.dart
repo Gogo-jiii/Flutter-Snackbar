@@ -36,7 +36,34 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                showSnackbar();
+              },
+              child: const Text("Show snack bar"),
+            )
+          ],
+        ),
+      ),
     );
+  }
+
+  void showSnackbar() {
+    SnackBar snackBar = SnackBar(
+      behavior: SnackBarBehavior.floating,
+      duration: const Duration(minutes: 1),
+      content: const Text("This is a Snackbar."),
+      action: SnackBarAction(
+        label: 'Close',
+        onPressed: () {
+          debugPrint("Dismissed.");
+        },
+      ),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }
